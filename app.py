@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 from streamlit_option_menu import option_menu
 
-# Change Name & Logo
+ 
 st.set_page_config(page_title="Disease Prediction", page_icon="⚕️")
 
 # Hiding Streamlit add-ons
@@ -15,7 +15,7 @@ hide_st_style = """
             """
 st.markdown(hide_st_style, unsafe_allow_html=True)
 
-# Adding Background Image
+ 
 background_image_url = "https://www.strategyand.pwc.com/m1/en/strategic-foresight/sector-strategies/healthcare/ai-powered-healthcare-solutions/img01-section1.jpg"  # Replace with your image URL
 
 page_bg_img = f"""
@@ -41,7 +41,7 @@ background-color: rgba(0, 0, 0, 0.7);
 """
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-# Load the saved models
+ 
 models = {
     'diabetes': pickle.load(open('Models/diabetes_model.sav', 'rb')),
     'heart_disease': pickle.load(open('Models/heart_disease_model.sav', 'rb')),
@@ -51,7 +51,7 @@ models = {
 }
 
 
-# Create a dropdown menu for disease prediction
+ 
 selected = st.selectbox(
     'Select a Disease to Predict',
     ['Diabetes Prediction',
@@ -66,8 +66,7 @@ def display_input(label, tooltip, key, type="text"):
         return st.text_input(label, key=key, help=tooltip)
     elif type == "number":
         return st.number_input(label, key=key, help=tooltip, step=1)
-
-# Diabetes Prediction Page
+ 
 if selected == 'Diabetes Prediction':
     st.title('Diabetes')
     st.write("Enter the following details to predict diabetes:")
@@ -87,7 +86,7 @@ if selected == 'Diabetes Prediction':
         diab_diagnosis = 'The person is diabetic' if diab_prediction[0] == 1 else 'The person is not diabetic'
         st.success(diab_diagnosis)
 
-# Heart Disease Prediction Page
+ 
 if selected == 'Heart Disease Prediction':
     st.title('Heart Disease')
     st.write("Enter the following details to predict heart disease:")
@@ -112,7 +111,7 @@ if selected == 'Heart Disease Prediction':
         heart_diagnosis = 'The person has heart disease' if heart_prediction[0] == 1 else 'The person does not have heart disease'
         st.success(heart_diagnosis)
 
-# Parkinson's Prediction Page
+ 
 if selected == "Parkinsons Prediction":
     st.title("Parkinson's Disease")
     st.write("Enter the following details to predict Parkinson's disease:")
@@ -146,7 +145,7 @@ if selected == "Parkinsons Prediction":
         parkinsons_diagnosis = "The person has Parkinson's disease" if parkinsons_prediction[0] == 1 else "The person does not have Parkinson's disease"
         st.success(parkinsons_diagnosis)
 
-# Lung Cancer Prediction Page
+ 
 if selected == "Lung Cancer Prediction":
     st.title("Lung Cancer")
     st.write("Enter the following details to predict lung cancer:")
@@ -173,7 +172,7 @@ if selected == "Lung Cancer Prediction":
         lungs_diagnosis = "The person has lung cancer disease" if lungs_prediction[0] == 1 else "The person does not have lung cancer disease"
         st.success(lungs_diagnosis)
 
-# Hypo-Thyroid Prediction Page
+ 
 if selected == "Hypo-Thyroid Prediction":
     st.title("Hypo-Thyroid")
     st.write("Enter the following details to predict hypo-thyroid disease:")
